@@ -35,18 +35,22 @@ public class ContactoController extends HttpServlet {
 		// TODO Auto-generated method stub
 		String idTxt = request.getParameter("id");
 		if(request.getParameter("ed").contentEquals("1")){
+			ContactoDao cDao = new ContactoDao();
+			Contacto c = cDao.find(Integer.parseInt(idTxt));
+			request.setAttribute("contacto", c); //with setAttribute() you can define a "key" and value pair so that you can get it in future using getAttribute("key")
+			request.getRequestDispatcher("/contactoedit.jsp").forward(request, response);//RequestDispatcher is used to send the control to the invoked page.
 			
 		}else if(request.getParameter("ed").contentEquals("2")){
 			ContactoDao cDao = new ContactoDao();
 			Contacto c = cDao.find(Integer.parseInt(idTxt));
 			if(c!=null){
 				cDao.delete(c);
+				request.setAttribute("msgResultado", "El contacto se ha eliminado correctamente"); //with setAttribute() you can define a "key" and value pair so that you can get it in future using getAttribute("key")
+				request.getRequestDispatcher("/contacto.jsp").forward(request, response);//RequestDispatcher is used to send the control to the invoked page.
 			}
 		}
 		
-		request.setAttribute("msgResultado", "El contacto se ha eliminado correctamente"); //with setAttribute() you can define a "key" and value pair so that you can get it in future using getAttribute("key")
-		request.getRequestDispatcher("/contacto.jsp").forward(request, response);//RequestDispatcher is used to send the control to the invoked page.
-	
+			
 		
 	}
 

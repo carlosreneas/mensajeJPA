@@ -33,6 +33,12 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a class="nav-link" href="campana.jsp">
+                  <span data-feather="globe"></span>
+                  Campañas
+                </a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" href="mensaje.jsp">
                   <span data-feather="mail"></span>
                   Mensajes
@@ -98,13 +104,15 @@
 
             </div>
           </div>
-
+		  <c:set var="contacto" scope="request" value = "${requestScope.contacto}"/>
+		  
+		   
           <div class="form-responsive">
 	          <form method="post" action="ContactoController" class="needs-validation" novalidate>
 	            <div class="row">
 	              <div class="col-md-6 mb-3">
 	                <label for="nombre">Nombres</label>
-	                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="" value="" required>
+	                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="" value="<c:out value = "${contacto.nombre}"/>" required>
 	                <div class="invalid-feedback">
 	                  El nombre es requerido.
 	                </div>
@@ -120,7 +128,7 @@
 	
 	            <div class="mb-3">
 	              <label for="email">Email </label>
-	              <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com">
+	              <input type="email" class="form-control" id="email" name="email" value="<c:out value = "${contacto.email}"/>" placeholder="you@example.com">
 	              <div class="invalid-feedback">
 	                Por favor ingrese un email valido.
 	              </div>
@@ -137,7 +145,7 @@
 	            
 	            
 	            <hr class="mb-4">
-	            <button class="btn btn-primary btn-lg btn-block" type="submit">Continue con el Registro</button>
+	            <button class="btn btn-primary btn-lg btn-block" type="submit">Continue con <c:out value="${contacto != null ? 'la Actualización': 'el Registro'}"/></button>
 	          </form>
           </div>
         </main>

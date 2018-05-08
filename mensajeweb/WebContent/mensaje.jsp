@@ -31,11 +31,18 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a class="nav-link" href="campana.jsp">
+                  <span data-feather="globe"></span>
+                  Campañas
+                </a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link active" href="mensaje.jsp">
                   <span data-feather="mail"></span>
                   Mensajes <span class="sr-only">(current)</span>
                 </a>
               </li>
+              
               <li class="nav-item">
                 <a class="nav-link" href="contacto.jsp">
                   <span data-feather="users"></span>

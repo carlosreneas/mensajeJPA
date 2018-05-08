@@ -33,6 +33,12 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a class="nav-link" href="campana.jsp">
+                  <span data-feather="globe"></span>
+                  Campañas
+                </a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" href="mensaje.jsp">
                   <span data-feather="mail"></span>
                   Mensajes
