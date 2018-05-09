@@ -27,7 +27,7 @@
           <div class="sidebar-sticky">
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="home.jsp">
                   <span data-feather="home"></span>
                   Dashboard 
                 </a>
@@ -108,7 +108,7 @@
 		  
 		   
           <div class="form-responsive">
-	          <form method="post" action="ContactoController" class="needs-validation" novalidate>
+	          <form method="post" action="ContactoController?ed=<c:out value="${contacto != null ? contacto.id: 0}"/>" class="needs-validation" novalidate>
 	            <div class="row">
 	              <div class="col-md-6 mb-3">
 	                <label for="nombre">Nombres</label>

@@ -12,6 +12,13 @@
     <form class="form-signin" method="post" action="LoginController">
       <img class="mb-4" src="https://images.vexels.com/media/users/3/136393/isolated/preview/a64969983168ba1e8aa409c2e512e3e4-icono-de-mensaje-de-chat-abierta-by-vexels.png" alt="" width="72" height="72">
       <h1 class="h3 mb-3 font-weight-normal">Credenciales de Ingreso</h1>
+      
+      <c:set var="alerta" scope="request" value = "${requestScope.msgResultado}"/>
+		<c:if test="${alerta!=null}">  
+			<div class="alert alert-success" role="alert">
+	  			<c:out value="${alerta}"/>
+			</div>
+		</c:if>
       <label for="usuario" class="sr-only">Email</label>
       <input type="text" id="usuario" name="usuario" class="form-control" placeholder="Usuario" required autofocus>
       <label for="password" class="sr-only">Password</label>

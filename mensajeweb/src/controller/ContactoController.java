@@ -38,6 +38,7 @@ public class ContactoController extends HttpServlet {
 			ContactoDao cDao = new ContactoDao();
 			Contacto c = cDao.find(Integer.parseInt(idTxt));
 			request.setAttribute("contacto", c); //with setAttribute() you can define a "key" and value pair so that you can get it in future using getAttribute("key")
+			
 			request.getRequestDispatcher("/contactoedit.jsp").forward(request, response);//RequestDispatcher is used to send the control to the invoked page.
 			
 		}else if(request.getParameter("ed").contentEquals("2")){
@@ -59,29 +60,53 @@ public class ContactoController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		//Contacto contactoreq = (Contacto) request.getAttribute("contacto");
+		
+		String op = request.getParameter("ed");
+		Integer id = 0;
+		if (op!=null) {
+			id = Integer.parseInt(op);
+		}
+
+		
 		HttpSession session = request.getSession(true);
 		
 		String nombreTxt = request.getParameter("nombre");
 		String apellidoTxt = request.getParameter("apellido");
 		String emailTxt = request.getParameter("email");
-		 
-		Contacto contacto = new Contacto();
-		
-		contacto.setEmail(emailTxt);
-		contacto.setNombre(nombreTxt + " " + apellidoTxt); 
 		
 		String usuarioSession = (String) session.getAttribute("userName");
 		UsuarioDao uDao = new UsuarioDao();
 		Usuario usuarioBean = uDao.find(usuarioSession);
 		
-		contacto.setUsuarioBean(usuarioBean);
-		
 		ContactoDao cDao = new ContactoDao();
-		cDao.insert(contacto);
+		 
+		if(id>0){
+			Contacto contacto = cDao.find(id);
 		
-		request.setAttribute("msgResultado", "El contacto se ha registrado correctamente"); //with setAttribute() you can define a "key" and value pair so that you can get it in future using getAttribute("key")
-		request.getRequestDispatcher("/contacto.jsp").forward(request, response);//RequestDispatcher is used to send the control to the invoked page.
+			contacto.setEmail(emailTxt);
+			contacto.setNombre(nombreTxt + " " + apellidoTxt);
+			
 	
+			cDao.update(contacto);
+			
+			request.setAttribute("msgResultado", "El contacto se ha actualizado correctamente"); //with setAttribute() you can define a "key" and value pair so that you can get it in future using getAttribute("key")
+		}else{
+		
+			Contacto contacto = new Contacto();
+			
+			contacto.setEmail(emailTxt);
+			contacto.setNombre(nombreTxt + " " + apellidoTxt);
+			contacto.setUsuarioBean(usuarioBean);
+	
+			cDao.insert(contacto);
+			
+			request.setAttribute("msgResultado", "El contacto se ha registrado correctamente"); //with setAttribute() you can define a "key" and value pair so that you can get it in future using getAttribute("key")
+		
+		}
+		request.getRequestDispatcher("/contacto.jsp").forward(request, response);//RequestDispatcher is used to send the control to the invoked page.
+		
 		
 		
 	}

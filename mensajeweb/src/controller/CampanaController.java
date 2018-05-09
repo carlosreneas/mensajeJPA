@@ -9,10 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import entities.Campana;
-import entities.Contacto;
 import entities.Usuario;
 import model.CampanaDao;
-import model.ContactoDao;
 import model.UsuarioDao;
 
 /**

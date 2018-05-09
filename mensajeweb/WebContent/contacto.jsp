@@ -27,7 +27,7 @@
           <div class="sidebar-sticky">
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="home.jsp">
                   <span data-feather="home"></span>
                   Dashboard 
                 </a>
@@ -109,8 +109,12 @@
 
             </div>
           </div>
-			
-			
+		<c:set var="alerta" scope="request" value = "${requestScope.msgResultado}"/>
+		<c:if test="${alerta!=null}">  
+			<div class="alert alert-success" role="alert">
+	  			<c:out value="${alerta}"/>
+			</div>
+		</c:if>
 			
 			
           <div class="table-responsive">
