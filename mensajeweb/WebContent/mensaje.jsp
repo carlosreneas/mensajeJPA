@@ -1,3 +1,4 @@
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -96,6 +97,10 @@
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h1 class="h2">Mensajes</h1>
             <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group mr-2">
+                <a href="mensajeedit.jsp" class="btn btn-sm btn-outline-primary">Nuevo</a>
+                
+              </div>
               <div class="btn-group mr-2">
                 <button class="btn btn-sm btn-outline-secondary">Compartir</button>
                 <button class="btn btn-sm btn-outline-secondary">Exportar</button>
@@ -125,13 +130,13 @@
               	<c:forEach var="mensaje" items="${mDao.list()}">
 				<tr>
 				<td><c:out value="${mensaje.id}"/></td>
-				<td><c:out value="${mensaje.nombre}"/></td>
+				<td><c:out value="${mensaje.contactoBean.nombre}"/></td>
 				<td><c:out value="${mensaje.email}"/></td>
 				<td><c:out value="${mensaje.fechaenvio}"/></td>
 				<td><c:out value="${mensaje.fechaapertura}"/></td>
 				<td><c:out value="${mensaje.ip}"/></td>
 				<td><c:out value="${mensaje.navegador}"/></td>
-				<td>Editar</td>             
+				<td><a href="MensajeController?id=<c:out value="${mensaje.id}"/>&ed=1"><span data-feather="edit"></span></a> <a href="MensajeController?id=<c:out value="${mensaje.id}"/>&ed=2"><span data-feather="trash"></span></a> <a href="MensajeController?id=<c:out value="${mensaje.id}"/>&ed=3"><span data-feather="send"></span></a></td>           
 				</tr>
 				</c:forEach>
                 

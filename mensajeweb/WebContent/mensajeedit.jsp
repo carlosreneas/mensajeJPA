@@ -1,18 +1,13 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Mensajes</title>
-<link href="css/style.css" rel="stylesheet">
-<link href="css/helper.css" rel="stylesheet">
-
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
- 
-
 <link href="css/dashboard.css" rel="stylesheet">
 </head>
 <body>
@@ -32,27 +27,27 @@
           <div class="sidebar-sticky">
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link active" href="home.jsp">
+                <a class="nav-link" href="home.jsp">
                   <span data-feather="home"></span>
-                  Dashboard <span class="sr-only">(current)</span>
+                  Dashboard 
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="campana.jsp">
                   <span data-feather="globe"></span>
-                  Campañas
+                  Campañas 
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="mensaje.jsp">
+                <a class="nav-link active" href="mensaje.jsp">
                   <span data-feather="mail"></span>
-                  Mensajes
+                  Mensajes <span class="sr-only">(current)</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="contacto.jsp">
                   <span data-feather="users"></span>
-                  Contactos
+                  Contactos 
                 </a>
               </li>
               <li class="nav-item">
@@ -100,77 +95,61 @@
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">Dashboard</h1>
-           
+            <h1 class="h2">Nuevo Mensaje</h1>
+            <div class="btn-toolbar mb-2 mb-md-0">
+
+              <div class="btn-group mr-2">
+                <a class="btn btn-sm btn-outline-secondary" href="contacto.jsp">Cancelar</a>
+              </div>
+
+            </div>
           </div>
-		
-		<c:set var="alerta" scope="request" value = "${requestScope.msgResultado}"/>
-		<c:if test="${alerta!=null}">  
-			<div class="alert alert-success" role="alert">
-	  			<c:out value="${alerta}"/>
-			</div>
-		</c:if>
-		
-          
-          <div class="container-fluid">
-          <div class="row">
-                    <div class="col-md-3">
-                        <div class="card p-30">
-                            <div class="media">
-                                <div class="media-left meida media-middle">
-                                    <span><i class="fa fa-usd f-s-40 color-primary"></i></span>
-                                </div>
-                                <div class="media-body media-text-right">
-                                    <h2>568120</h2>
-                                    <p class="m-b-0">Total</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <jsp:useBean id="cDao" class="model.CampanaDao" scope="request"></jsp:useBean>
-                    <div class="col-md-3">
-                        <div class="card p-30">
-                            <div class="media">
-                                <div class="media-left meida media-middle">
-                                    <span><i class="fa fa-globe f-s-40 color-success"></i></span>
-                                </div>
-                                <div class="media-body media-text-right">
-                                    <h2><c:out value="${cDao.list().size()}"/></h2>
-                                    <p class="m-b-0">Campañas</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <jsp:useBean id="mDao" class="model.MensajeDao" scope="request"></jsp:useBean>
-                    <div class="col-md-3">
-                        <div class="card p-30">
-                            <div class="media">
-                                <div class="media-left meida media-middle">
-                                    <span><i class="fa fa-envelope f-s-40 color-warning"></i></span>
-                                </div>
-                                <div class="media-body media-text-right">
-                                    <h2><c:out value="${mDao.list().size()}"/></h2>
-                                    <p class="m-b-0">Mensajes</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <jsp:useBean id="oDao" class="model.ContactoDao" scope="request"></jsp:useBean>
-                    <div class="col-md-3">
-                        <div class="card p-30">
-                            <div class="media">
-                                <div class="media-left meida media-middle">
-                                    <span><i class="fa fa-users f-s-40 color-danger"></i></span>
-                                </div>
-                                <div class="media-body media-text-right">
-                                    <h2><c:out value="${oDao.list().size()}"/></h2>
-                                    <p class="m-b-0">Contactos</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                </div>
+
+          <div class="form-responsive">
+	          <form method="post" action="MensajeController" class="needs-validation" novalidate>
+	            
+				
+	            <div class="mb-3">
+	              <label for="campana">Campaña</label>
+	              <jsp:useBean id="pDao" class="model.CampanaDao" scope="request">
+</jsp:useBean>
+	              	<select class="form-control" id="campana" name="campana">
+		              	<c:forEach var="campana" items="${pDao.list()}">
+					      	<option value="<c:out value="${campana.id}"/>"><c:out value="${campana.nombre}"/></option>
+					    </c:forEach>
+				  	</select>
+	              <div class="invalid-feedback">
+	                Por favor seleccione una la campaña.
+	              </div>
+	            </div>
+				
+				<div class="mb-3">
+	              <label for="nombre">Contacto </label>
+	              <jsp:useBean id="cDao" class="model.ContactoDao" scope="request">
+</jsp:useBean>
+	              	<select class="form-control" id="contacto" name="contacto">
+		              	<c:forEach var="contacto" items="${cDao.list()}">
+					      	<option value="<c:out value="${contacto.id}"/>"><c:out value="${contacto.nombre}"/></option>
+					    </c:forEach>
+				  	</select><div class="invalid-feedback">
+	                Por favor seleccione un nombre de contacto.
+	              </div>
+	            </div>
+
+	            
+	            <hr class="mb-4">
+
+	            <div class="custom-control custom-checkbox">
+	              <input type="checkbox" class="custom-control-input" name="decline" id="decline">
+	              <label class="custom-control-label" for="save-info">Declaro que la información obtenida cuenta con el consentimiento del contacto</label>
+	            </div>
+	
+	            
+	            
+	            <hr class="mb-4">
+	            <button class="btn btn-primary btn-lg btn-block" type="submit">Continue con la Campaña</button>
+	          </form>
+          </div>
         </main>
       </div>
     </div>

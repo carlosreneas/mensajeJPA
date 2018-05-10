@@ -50,7 +50,7 @@ public class CampanaController extends HttpServlet {
 		
 		campana.setDescripcion(descripcionTxt);
 		campana.setNombre(nombreTxt);
-		//campana.setPlantilla(plantillaTxt);
+		campana.setPlantilla(plantillaTxt);
 		
 		String usuarioSession = (String) session.getAttribute("userName");
 		UsuarioDao uDao = new UsuarioDao();

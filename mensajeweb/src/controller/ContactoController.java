@@ -86,8 +86,8 @@ public class ContactoController extends HttpServlet {
 			Contacto contacto = cDao.find(id);
 		
 			contacto.setEmail(emailTxt);
-			contacto.setNombre(nombreTxt + " " + apellidoTxt);
-			
+			contacto.setNombre(nombreTxt);
+			contacto.setApellido(apellidoTxt);
 	
 			cDao.update(contacto);
 			
@@ -97,7 +97,8 @@ public class ContactoController extends HttpServlet {
 			Contacto contacto = new Contacto();
 			
 			contacto.setEmail(emailTxt);
-			contacto.setNombre(nombreTxt + " " + apellidoTxt);
+			contacto.setNombre(nombreTxt);
+			contacto.setApellido(apellidoTxt);
 			contacto.setUsuarioBean(usuarioBean);
 	
 			cDao.insert(contacto);

@@ -95,7 +95,7 @@
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">campañas</h1>
+            <h1 class="h2">Campañas</h1>
             <div class="btn-toolbar mb-2 mb-md-0">
             <div class="btn-group mr-2">
                 <a href="campanaedit.jsp" class="btn btn-sm btn-outline-primary">Nuevo</a>
@@ -124,7 +124,7 @@
                 </tr>
               </thead>
               <tbody>
-
+				
               	<c:forEach var="campana" items="${pDao.list()}">
               	
 				<tr>
@@ -133,7 +133,7 @@
 				<td><c:out value="${campana.descripcion}"/></td>
 				<td><c:out value="${campana.usuarioBean.usuario}"/></td>
 
-				<td>Editar</td>             
+				<td><a href="CampanaController?id=<c:out value="${campana.id}"/>&ed=1"><span data-feather="edit"></span></a> <a href="CampanaController?id=<c:out value="${campana.id}"/>&ed=2"><span data-feather="trash"></span></a></td>             
 				</tr>
 				</c:forEach>
                 
