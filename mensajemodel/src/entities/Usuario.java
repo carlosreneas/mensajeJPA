@@ -33,7 +33,16 @@ public class Usuario implements Serializable {
 	private List<Contacto> contactos;
 
 	//bi-directional many-to-many association to Rol
-	@ManyToMany(mappedBy="usuarios")
+	@ManyToMany
+	@JoinTable(
+		name="usuariorol"
+		, joinColumns={
+			@JoinColumn(name="usuario")
+			}
+		, inverseJoinColumns={
+			@JoinColumn(name="rol")
+			}
+		)
 	private List<Rol> rols;
 
 	public Usuario() {

@@ -22,7 +22,7 @@ public class Campana implements Serializable {
 
 	private String nombre;
 
-	private int plantilla;
+	private String plantilla;
 
 	//bi-directional many-to-one association to Usuario
 	@ManyToOne
@@ -60,11 +60,11 @@ public class Campana implements Serializable {
 		this.nombre = nombre;
 	}
 
-	public int getPlantilla() {
+	public String getPlantilla() {
 		return this.plantilla;
 	}
 
-	public void setPlantilla(int plantilla) {
+	public void setPlantilla(String plantilla) {
 		this.plantilla = plantilla;
 	}
 

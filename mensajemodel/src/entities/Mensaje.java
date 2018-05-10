@@ -18,8 +18,6 @@ public class Mensaje implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 
-	private int contacto;
-
 	private String email;
 
 	@Temporal(TemporalType.DATE)
@@ -37,6 +35,11 @@ public class Mensaje implements Serializable {
 	@JoinColumn(name="campana")
 	private Campana campanaBean;
 
+	//bi-directional many-to-one association to Contacto
+	@ManyToOne
+	@JoinColumn(name="contacto")
+	private Contacto contactoBean;
+
 	public Mensaje() {
 	}
 
@@ -46,14 +49,6 @@ public class Mensaje implements Serializable {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public int getContacto() {
-		return this.contacto;
-	}
-
-	public void setContacto(int contacto) {
-		this.contacto = contacto;
 	}
 
 	public String getEmail() {
@@ -102,6 +97,14 @@ public class Mensaje implements Serializable {
 
 	public void setCampanaBean(Campana campanaBean) {
 		this.campanaBean = campanaBean;
+	}
+
+	public Contacto getContactoBean() {
+		return this.contactoBean;
+	}
+
+	public void setContactoBean(Contacto contactoBean) {
+		this.contactoBean = contactoBean;
 	}
 
 }

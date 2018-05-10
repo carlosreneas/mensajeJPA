@@ -2,6 +2,7 @@ package entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.List;
 
 
 /**
@@ -17,6 +18,8 @@ public class Contacto implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 
+	private String apellido;
+
 	private String email;
 
 	private String nombre;
@@ -25,6 +28,10 @@ public class Contacto implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="usuario")
 	private Usuario usuarioBean;
+
+	//bi-directional many-to-one association to Mensaje
+	@OneToMany(mappedBy="contactoBean")
+	private List<Mensaje> mensajes;
 
 	public Contacto() {
 	}
@@ -35,6 +42,14 @@ public class Contacto implements Serializable {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getApellido() {
+		return this.apellido;
+	}
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
 	}
 
 	public String getEmail() {
@@ -59,6 +74,28 @@ public class Contacto implements Serializable {
 
 	public void setUsuarioBean(Usuario usuarioBean) {
 		this.usuarioBean = usuarioBean;
+	}
+
+	public List<Mensaje> getMensajes() {
+		return this.mensajes;
+	}
+
+	public void setMensajes(List<Mensaje> mensajes) {
+		this.mensajes = mensajes;
+	}
+
+	public Mensaje addMensaje(Mensaje mensaje) {
+		getMensajes().add(mensaje);
+		mensaje.setContactoBean(this);
+
+		return mensaje;
+	}
+
+	public Mensaje removeMensaje(Mensaje mensaje) {
+		getMensajes().remove(mensaje);
+		mensaje.setContactoBean(null);
+
+		return mensaje;
 	}
 
 }

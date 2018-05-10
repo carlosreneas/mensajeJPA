@@ -21,16 +21,7 @@ public class Rol implements Serializable {
 	private String descripcion;
 
 	//bi-directional many-to-many association to Usuario
-	@ManyToMany
-	@JoinTable(
-		name="usuariorol"
-		, joinColumns={
-			@JoinColumn(name="rol")
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="usuario")
-			}
-		)
+	@ManyToMany(mappedBy="rols")
 	private List<Usuario> usuarios;
 
 	public Rol() {
