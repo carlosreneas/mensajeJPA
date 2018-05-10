@@ -119,7 +119,7 @@
 	              </div>
 	              <div class="col-md-6 mb-3">
 	                <label for="apellido">Apellidos</label>
-	                <input type="text" class="form-control" id="apellido" name="apellido" placeholder="" value="" required>
+	                <input type="text" class="form-control" id="apellido" name="apellido" placeholder="" value="<c:out value = "${contacto.apellido}"/>" required>
 	                <div class="invalid-feedback">
 	                  El apellido es requerido.
 	                </div>

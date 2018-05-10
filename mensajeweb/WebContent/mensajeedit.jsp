@@ -114,6 +114,7 @@
 	              <jsp:useBean id="pDao" class="model.CampanaDao" scope="request">
 </jsp:useBean>
 	              	<select class="form-control" id="campana" name="campana">
+	              	
 		              	<c:forEach var="campana" items="${pDao.list()}">
 					      	<option value="<c:out value="${campana.id}"/>"><c:out value="${campana.nombre}"/></option>
 					    </c:forEach>
@@ -147,7 +148,7 @@
 	            
 	            
 	            <hr class="mb-4">
-	            <button class="btn btn-primary btn-lg btn-block" type="submit">Continue con la Campaña</button>
+	            <button class="btn btn-primary btn-lg btn-block" type="submit">Continue con el Mensaje</button>
 	          </form>
           </div>
         </main>

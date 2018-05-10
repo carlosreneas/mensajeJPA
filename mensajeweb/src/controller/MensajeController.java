@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.util.Date;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,6 +18,7 @@ import model.CampanaDao;
 import model.ContactoDao;
 import model.MensajeDao;
 import model.UsuarioDao;
+import process.Email;
 
 /**
  * Servlet implementation class MensajeController
@@ -37,7 +40,19 @@ public class MensajeController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String idTxt = request.getParameter("id");
+		if(request.getParameter("ed").contentEquals("3")){
+			MensajeDao mDao = new MensajeDao();
+			Mensaje mens = mDao.find(Integer.parseInt(idTxt));
+			Email.enviarCorreo(mens);
+			mens.setFechaenvio(new Date());
+			
+			mDao.update(mens);
+			
+			request.setAttribute("msgResultado", "El mensaje se ha enviado correctamente"); //with setAttribute() you can define a "key" and value pair so that you can get it in future using getAttribute("key")
+			request.getRequestDispatcher("/mensaje.jsp").forward(request, response);//RequestDispatcher is used to send the control to the invoked page.
+
+		}
 	}
 
 	/**

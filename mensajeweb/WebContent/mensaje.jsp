@@ -1,4 +1,5 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -108,7 +109,12 @@
 
             </div>
           </div>
-
+		<c:set var="alerta" scope="request" value = "${requestScope.msgResultado}"/>
+		<c:if test="${alerta!=null}">  
+			<div class="alert alert-success" role="alert">
+	  			<c:out value="${alerta}"/>
+			</div>
+		</c:if>
           <div class="table-responsive">
           <jsp:useBean id="mDao" class="model.MensajeDao" scope="request">
 </jsp:useBean>
@@ -132,11 +138,11 @@
 				<td><c:out value="${mensaje.id}"/></td>
 				<td><c:out value="${mensaje.contactoBean.nombre}"/></td>
 				<td><c:out value="${mensaje.email}"/></td>
-				<td><c:out value="${mensaje.fechaenvio}"/></td>
+				<td><fmt:formatDate dateStyle = "short" timeStyle = "short" type = "both" value = "${mensaje.fechaenvio}" /></td>
 				<td><c:out value="${mensaje.fechaapertura}"/></td>
 				<td><c:out value="${mensaje.ip}"/></td>
 				<td><c:out value="${mensaje.navegador}"/></td>
-				<td><a href="MensajeController?id=<c:out value="${mensaje.id}"/>&ed=1"><span data-feather="edit"></span></a> <a href="MensajeController?id=<c:out value="${mensaje.id}"/>&ed=2"><span data-feather="trash"></span></a> <a href="MensajeController?id=<c:out value="${mensaje.id}"/>&ed=3"><span data-feather="send"></span></a></td>           
+				<td><a title="Editar" href="MensajeController?id=<c:out value="${mensaje.id}"/>&ed=1"><span data-feather="edit"></span></a> <a title="Eliminar" href="MensajeController?id=<c:out value="${mensaje.id}"/>&ed=2"><span data-feather="trash"></span></a> <a title="Enviar Mensaje" href="MensajeController?id=<c:out value="${mensaje.id}"/>&ed=3"><span data-feather="send"></span></a></td>           
 				</tr>
 				</c:forEach>
                 

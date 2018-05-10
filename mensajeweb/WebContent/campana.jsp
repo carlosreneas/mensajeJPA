@@ -133,7 +133,7 @@
 				<td><c:out value="${campana.descripcion}"/></td>
 				<td><c:out value="${campana.usuarioBean.usuario}"/></td>
 
-				<td><a href="CampanaController?id=<c:out value="${campana.id}"/>&ed=1"><span data-feather="edit"></span></a> <a href="CampanaController?id=<c:out value="${campana.id}"/>&ed=2"><span data-feather="trash"></span></a></td>             
+				<td><a href="CampanaController?id=<c:out value="${campana.id}"/>&ed=1"><span data-feather="edit"></span></a> <a href="CampanaController?id=<c:out value="${campana.id}"/>&ed=2"><span data-feather="trash"></span></a> <a href="MensajeController?id=<c:out value="${mensaje.id}"/>&ed=3"><span data-feather="send"></span></a></td>             
 				</tr>
 				</c:forEach>
                 
