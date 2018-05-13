@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.util.Date;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,9 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import entities.Campana;
+import entities.Contacto;
+import entities.Mensaje;
 import entities.Usuario;
 import model.CampanaDao;
+import model.ContactoDao;
+import model.MensajeDao;
 import model.UsuarioDao;
+import process.Email;
 
 /**
  * Servlet implementation class CampanaController
@@ -33,7 +40,35 @@ public class CampanaController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String idTxt = request.getParameter("id");
+		if(request.getParameter("ed").contentEquals("1")){
+			CampanaDao cDao = new CampanaDao();
+			Campana c = cDao.find(Integer.parseInt(idTxt));
+			request.setAttribute("campana", c); //with setAttribute() you can define a "key" and value pair so that you can get it in future using getAttribute("key")
+			
+			request.getRequestDispatcher("/campanaedit.jsp").forward(request, response);//RequestDispatcher is used to send the control to the invoked page.
+		
+		}else if(request.getParameter("ed").contentEquals("2")){
+			CampanaDao cDao = new CampanaDao();
+			Campana c = cDao.find(Integer.parseInt(idTxt));
+			if(c!=null){
+				cDao.delete(c);
+				request.setAttribute("msgResultado", "La campaña se ha eliminado correctamente"); //with setAttribute() you can define a "key" and value pair so that you can get it in future using getAttribute("key")
+				request.getRequestDispatcher("/campana.jsp").forward(request, response);//RequestDispatcher is used to send the control to the invoked page.
+			}
+		}else if(request.getParameter("ed").contentEquals("3")){
+			CampanaDao cDao = new CampanaDao();
+			
+			Campana c = cDao.find(Integer.parseInt(idTxt));
+			Integer msgCant = 0;
+			
+			Email.EnviarCampana(c);
+			
+			request.setAttribute("msgResultado", "La campaña de envío masivo ha comenzado "); //with setAttribute() you can define a "key" and value pair so that you can get it in future using getAttribute("key")
+			request.getRequestDispatcher("/campana.jsp").forward(request, response);//RequestDispatcher is used to send the control to the invoked page.
+			  
+			//
+		}
 	}
 
 	/**

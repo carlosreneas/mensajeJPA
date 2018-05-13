@@ -1,6 +1,8 @@
 package process;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -10,7 +12,10 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import entities.Campana;
 import entities.Mensaje;
+import model.CampanaDao;
+import model.MensajeDao;
 
 public class Email {
 
@@ -84,6 +89,37 @@ public class Email {
 			
 		}
 		
+	}
+	
+	/** Se realiza el envío de los mensajes de la campaña de 
+	 *  manera asincrona
+	 * @param c - Corresponde a la campaña
+	 */
+	public static void EnviarCampana(Campana c) {
+		Thread task = new Thread()
+        {
+            @Override
+            public void run()
+            {
+            	Integer msgCant = 0;
+            	System.out.println("Inicia el Hilo");
+            	for (Mensaje m: c.getMensajes()){
+    				
+    				//MensajeDao mDao = new MensajeDao();
+    				Mensaje mu = c.getMensajes().get(msgCant);
+    				Email.enviarCorreo(mu);
+    				c.getMensajes().get(msgCant).setFechaenvio(new Date());
+    				System.out.println(mu.getEmail());
+    				
+    				msgCant ++;
+    			}
+            	CampanaDao cDao = new CampanaDao();
+            	cDao.update(c);
+            }
+        };
+
+        task.start();
+        return;
 	}
 
 }
