@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
+
+	<ui:define name="content">
+	    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Nuevo Contacto</h1>
+            
+          </div>
+          
+          	
+          <div class="form-responsive">
+	          <h:form>
+	            <div class="row">
+	              <div class="col-md-6 mb-3">
+	                <b:inputText id="nombre" class="form-control" 
+	                value="#{contactoBean.contacto.nombre}" 
+	                label="Nombres:" required="true"/> 
+	                <div class="invalid-feedback">
+	                  El nombre es requerido.
+	                </div>
+	              </div>
+	              <div class="col-md-6 mb-3">
+	                <b:inputText id="apellido" class="form-control" 
+	                value="#{contactoBean.contacto.apellido}" 
+	                label="Apellidos:" required="true"/>
+	                <div class="invalid-feedback">
+	                  El apellido es requerido.
+	                </div>
+	              </div>
+	            </div>
+	
+	            <div class="mb-3">
+	              <b:inputText label="E-mail:" 
+	              value="#{contactoBean.contacto.email}" 
+	              labelStyle="width:80px;">
+				      <f:facet name="prepend">
+				        <h:outputText value="@" />
+				      </f:facet>
+				    </b:inputText>
+	              <div class="invalid-feedback">
+	                Por favor ingrese un email valido.
+	              </div>
+	            </div>
+	
+	            
+	            <hr class="mb-4"/>
+
+	            
+	
+	            
+	            
+	            <hr class="mb-4"/>
+	            <b:commandButton value="Continue con el Registro" 
+	         	ajax="true" update="@none" look="primary" 
+	         	action="#{contactoBean.guardar}"
+	         	styleClass="btn btn-primary btn-lg btn-block"/>
+	         	
+	          </h:form>
+          </div>
+        	
+	</ui:define>
+</ui:composition>
+</html>

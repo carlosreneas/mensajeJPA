@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
+<title>Mensajes</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous"></link>
+<link href="css/signin.css" rel="stylesheet"></link>
+</h:head>
+  <h:body class="text-center">
+    <b:form class="form-signin" id="loginForm">
+      <img class="mb-4" src="https://images.vexels.com/media/users/3/136393/isolated/preview/a64969983168ba1e8aa409c2e512e3e4-icono-de-mensaje-de-chat-abierta-by-vexels.png" alt="" width="72" height="72"/>
+      <h1 class="h3 mb-3 font-weight-normal">Credenciales de Ingreso</h1>
+      
+      
+      <label for="j_username" class="sr-only">Email</label>
+      <b:inputText id="usernameDiv" fieldId="j_username" name="j_username"
+               value="#{loginController.usuario.usuario}"
+               class="form-control" placeholder="Usuario"/>
+  	  <b:message for="@previous" />
+      
+      <label for="j_password" class="sr-only">Password</label>
+      <b:inputSecret id="passwordDiv" fieldId="j_password" name="j_password"
+                 value="#{loginController.usuario.clave}"
+                 class="form-control" placeholder="Password"/>
+  	  <b:message for="passwordDiv" />
+      
+      <div class="checkbox mb-3">
+        <label>
+          <input type="checkbox" value="remember-me"/> Recuerdame me
+        </label>
+      </div>
+      <b:commandButton id="ref" class="btn btn-lg btn-primary btn-block" update="@form" 
+      value="Ingresar" action="#{loginController.login()}" />
+
+      
+      <b:growl for="ref" id="growlSpecific" placementFrom="top" show-detail="true"
+         global-only="false"
+         show-summary="true" allow-dismiss="true"
+         animation-enter="animated bounceInDown"
+         animation-exit="animated flipOutX"
+         escape="true" />
+      <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
+    </b:form>
+    
+  </h:body>
+</html>
