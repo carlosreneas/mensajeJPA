@@ -53,9 +53,10 @@ public class LoginController implements Serializable{
 		System.out.println("Iniciando validación de Login");
 		UsuarioDao loginDao = new UsuarioDao(); //creating object for LoginDao. This class contains main logic of the application.
 		 
-		String userValidate = loginDao.validarUsuario(usuario); //Calling authenticateUser function
+		this.usuario = loginDao.validarUsuario(usuario); //Calling authenticateUser function
 
-		if(userValidate.contentEquals("SUCCESS")) {
+		if(this.usuario != null) {
+			
 			/*
 			session.setAttribute("userName", usuarioTxt); 
 			request.setAttribute("msgResultado", "Usuario " + usuarioTxt + " bienvenido a la plataforma de mensajes"); 			
@@ -72,6 +73,11 @@ public class LoginController implements Serializable{
 			*/
 			return "error";
 		}
+	}
+	
+	public String cerrar(){
+		this.usuario = null;
+		return "ok";
 	}
 	
 }

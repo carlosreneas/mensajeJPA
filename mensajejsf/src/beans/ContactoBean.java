@@ -40,9 +40,15 @@ public class ContactoBean {
 		this.contactos = contactos;
 	}
 	
+	public String nuevo(){
+		this.contacto = new Contacto();
+		return "sucess";
+	}
+	
 	public void guardar(){
 		this.contacto.setUsuarioBean(loginController.getUsuario());
 		cDao.insert(this.contacto);
+		cDao.getEm().refresh(loginController.getUsuario());
 	}
 
 	public LoginController getLoginController() {
