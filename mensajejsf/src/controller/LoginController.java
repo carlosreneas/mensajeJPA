@@ -4,7 +4,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+
+import net.bootsfaces.component.message.Message;
 import net.bootsfaces.utils.FacesMessages;
 
 import entities.Usuario;
@@ -19,15 +22,25 @@ public class LoginController implements Serializable{
 	
 	UsuarioDao usuarioDao = new UsuarioDao();
 	
+	String mensaje = null;
+	
 	//private String specificInfo = "Mensaje nuevo";
 	
+
 	
 	
 	public void specificInfo() {
 		FacesMessages.info("loginForm:ref", "Info", "This is a specific message2!");
     }
-
 	
+	
+
+	public void mensajeInfo(){
+		FacesMessages.info(mensaje);
+		mensaje="";
+	}
+
+
 
 	public LoginController(){
 		usuario = new Usuario();
@@ -62,8 +75,9 @@ public class LoginController implements Serializable{
 			request.setAttribute("msgResultado", "Usuario " + usuarioTxt + " bienvenido a la plataforma de mensajes"); 			
 			request.getRequestDispatcher("/home.jsp").forward(request, response);
 			*/
-			FacesMessages.info("ref", "Info", "This is a specific message!");
-
+			
+			mensaje = "Usuario logeado";
+			
 			return "sucess";
 		} else { 
 			/*

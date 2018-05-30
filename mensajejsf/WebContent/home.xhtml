@@ -14,7 +14,8 @@
           <h1 class="h2">Dashboard</h1>
         </div>
         
-        
+        <b:alert severity="success"><strong>Well done!</strong> You successfully read this important alert message.
+        </b:alert>
           <div class="container-fluid">
           <div class="row">
                     <div class="col-md-3">
@@ -38,7 +39,7 @@
                                     <span><i class="fa fa-globe f-s-40 color-success"></i></span>
                                 </div>
                                 <div class="media-body media-text-right">
-                                    <h2><h:outputText value="#{campanaBean.campanas.size()}" /></h2>
+                                    <h2><h:outputText value="#{loginController.usuario.campanas.size()}" /></h2>
                                     <p class="m-b-0">Campañas</p>
                                 </div>
                             </div>
@@ -65,7 +66,7 @@
                                     <span><i class="fa fa-users f-s-40 color-danger"></i></span>
                                 </div>
                                 <div class="media-body media-text-right">
-                                    <h2><h:outputText value="#{contactoBean.contactos.size()}" /></h2>
+                                    <h2><h:outputText value="#{loginController.usuario.contactos.size()}" /></h2>
                                     <p class="m-b-0">Contactos</p>
                                 </div>
                             </div>
@@ -74,12 +75,10 @@
                 </div>
             </div>
          
-          <b:growl id="growlSpecific" placementFrom="top" show-detail="true"
-         global-only="false"
-         show-summary="true" allow-dismiss="true"
-         animation-enter="animated bounceInDown"
-         animation-exit="animated flipOutX"
-         escape="true" />
+          <b:growl id="growlMsg" globalOnly="true" placementFrom="bottom"
+         show-detail="true" show-summary="false" allowDismiss="true"
+         delay="10000" escape="true" />
+         
 	</ui:define>
 
 </ui:composition>

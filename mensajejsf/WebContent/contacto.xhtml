@@ -58,9 +58,15 @@
 	            
 	            
 	            <hr class="mb-4"/>
-	            <b:commandButton value="Continue con el Registro" 
+	            <b:commandButton value="Continue con el Nuevo Registro" 
 	         	ajax="true" update="@none" look="primary" 
+	         	rendered="#{contactoBean.contacto.nombre==null}"
 	         	action="#{contactoBean.guardar}"
+	         	styleClass="btn btn-primary btn-lg btn-block"/>
+	         	<b:commandButton value="Continue con la Actulización del Registro" 
+	         	ajax="true" update="@none" look="primary" 
+	         	rendered="#{contactoBean.contacto.nombre!=null}"
+	         	action="#{contactoBean.actualizar}"
 	         	styleClass="btn btn-primary btn-lg btn-block"/>
 	         	
 	          </h:form>

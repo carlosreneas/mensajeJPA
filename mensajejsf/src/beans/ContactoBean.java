@@ -10,6 +10,7 @@ import javax.faces.bean.SessionScoped;
 import controller.LoginController;
 import entities.Contacto;
 import model.ContactoDao;
+import net.bootsfaces.component.message.Message;
 
 @ManagedBean
 @SessionScoped
@@ -23,7 +24,7 @@ public class ContactoBean {
 	
 	@ManagedProperty(value="#{loginController}")
 	private LoginController loginController;
-
+	
 	public Contacto getContacto() {
 		return contacto;
 	}
@@ -45,9 +46,26 @@ public class ContactoBean {
 		return "sucess";
 	}
 	
-	public void guardar(){
+	public String guardar(){
 		this.contacto.setUsuarioBean(loginController.getUsuario());
 		cDao.insert(this.contacto);
+		cDao.getEm().refresh(loginController.getUsuario());
+		return "sucess";
+	}
+	
+	public String actualizar(){
+		cDao.update(this.contacto);
+		cDao.getEm().refresh(loginController.getUsuario());
+		return "sucess";
+	}
+	
+	public String editar(Contacto contacto){
+		this.contacto = contacto;
+		return "sucess";
+	}
+	
+	public void eliminar(Contacto contacto){
+		cDao.delete(contacto);
 		cDao.getEm().refresh(loginController.getUsuario());
 	}
 

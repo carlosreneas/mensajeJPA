@@ -21,7 +21,47 @@
 			<from-action>#{contactoBean.nuevo()}</from-action>
 			<from-outcome>sucess</from-outcome>
 			<to-view-id>/contacto.xhtml</to-view-id>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
-
+	<navigation-rule>
+		<display-name>contacto.xhtml</display-name>
+		<from-view-id>/contacto.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{contactoBean.guardar}</from-action>
+			<from-outcome>sucess</from-outcome>
+			<to-view-id>/contactoList.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>contactoList.xhtml</display-name>
+		<from-view-id>/contactoList.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{contactoBean.editar(contacto)}</from-action>
+			<from-outcome>sucess</from-outcome>
+			<to-view-id>/contacto.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>contacto.xhtml</display-name>
+		<from-view-id>/contacto.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{contactoBean.actualizar}</from-action>
+			<from-outcome>sucess</from-outcome>
+			<to-view-id>/contactoList.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>contactoList.xhtml</display-name>
+		<from-view-id>/contactoList.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{contactoBean.eliminar(contacto)}</from-action>
+			<from-outcome>sucess</from-outcome>
+			<to-view-id>/contactoList.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
 </faces-config>

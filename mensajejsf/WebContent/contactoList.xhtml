@@ -16,10 +16,7 @@
             <div class="btn-toolbar mb-2 mb-md-0">
              <div class="btn-group mr-2">
              <b:commandButton class="btn btn-sm btn-outline-primary" 
-      value="Nuevo" action="#{contactoBean.nuevo()}" />
-             	<b:commandLink style-class="btn btn-sm btn-outline-primary" 
-             	action="#{contactoBean.nuevo()}">Nuevo</b:commandLink>
-              
+      value="Nuevo" action="#{contactoBean.nuevo()}" />              
                  
               </div>
               <div class="btn-group mr-2">
@@ -41,8 +38,11 @@
 			    <b:dataTableColumn value="#{contacto.apellido}" />
 			    <b:dataTableColumn value="#{contacto.email}" />
 			    <b:dataTableColumn label="Acciones" styleClass="acciones">
-			    	<a href="#"><span data-feather="edit"></span></a>
-			    	<a href="#"><span data-feather="trash"></span></a>
+				    <h:commandLink action="#{contactoBean.editar(contacto)}">
+						<span data-feather="edit"></span></h:commandLink>
+			    	<h:commandLink action="#{contactoBean.eliminar(contacto)}" >
+			    		<span data-feather="trash"></span></h:commandLink>
+
 			    </b:dataTableColumn>
 			</b:dataTable>
            
